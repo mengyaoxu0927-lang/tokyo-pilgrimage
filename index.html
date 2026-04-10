@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="龙族巡礼">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0a0a0c">
+<meta name="description" content="龙族Ⅲ黑月之潮 东京圣地巡礼完全手册，含双源专属场景">
+<title>龙族Ⅲ · 东京圣地巡礼</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500&family=Shippori+Mincho:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0c; --bg2:#111116; --bg3:#181820;
+  --border:rgba(180,140,80,0.14); --border2:rgba(180,140,80,0.32);
+  --gold:#c8a84b; --gold-dim:rgba(200,168,75,0.5); --gold-glow:rgba(200,168,75,0.09);
+  --purple:rgba(160,110,220,0.82); --purple-bg:rgba(106,74,170,0.11);
+  --red-dim:rgba(192,57,43,0.6);
+  --text:#e0d7c6; --text-dim:#867c6e; --text-faint:#46413c;
+  --white:#eee8dc;
+  --safe-top:env(safe-area-inset-top,0px);
+  --safe-bot:env(safe-area-inset-bottom,0px);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;font-size:15px;}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:'Noto Sans SC','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;
+  font-weight:300;line-height:1.8;
+  padding-bottom:calc(16px + var(--safe-bot));
+}
+
+/* ── HERO ── */
+.hero{
+  position:relative;padding:calc(56px + var(--safe-top)) 20px 44px;
+  text-align:center;overflow:hidden;
+  background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(200,168,75,0.08),transparent 60%),
+             radial-gradient(ellipse 40% 40% at 15% 100%,rgba(106,74,170,0.07),transparent 55%),
+             linear-gradient(180deg,#0a0a0c,#0d0d12);
+  border-bottom:1px solid var(--border);
+}
+.hero::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background-image:repeating-linear-gradient(90deg,transparent 0,transparent 59px,rgba(200,168,75,0.02) 59px,rgba(200,168,75,0.02) 60px),
+                   repeating-linear-gradient(0deg,transparent 0,transparent 59px,rgba(200,168,75,0.02) 59px,rgba(200,168,75,0.02) 60px);
+}
+.hero-kana{font-family:'Shippori Mincho',serif;font-size:10px;letter-spacing:.55em;color:var(--gold-dim);margin-bottom:14px;position:relative;}
+.hero-title{font-family:'Noto Serif SC',serif;font-size:clamp(24px,6vw,40px);font-weight:700;color:var(--white);letter-spacing:.12em;line-height:1.2;position:relative;}
+.hero-sub{font-family:'Shippori Mincho',serif;font-size:13px;color:var(--gold);letter-spacing:.28em;margin:8px 0 18px;position:relative;}
+.hero-desc{font-size:12px;color:var(--text-dim);max-width:460px;margin:0 auto;line-height:1.85;position:relative;}
+.divider{width:48px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:16px auto;}
+
+/* ── DUAL NOTICE ── */
+.dual-notice{
+  margin:16px 16px 0;padding:14px 16px;
+  background:linear-gradient(135deg,rgba(106,74,170,0.13),rgba(192,57,43,0.07));
+  border:1px solid rgba(160,110,220,0.22);border-radius:4px;
+  font-size:12px;color:rgba(200,170,255,0.72);line-height:1.85;
+}
+.dual-notice strong{color:rgba(215,190,255,0.9);}
+
+/* ── STICKY NAV ── */
+.nav-bar{
+  position:sticky;top:0;z-index:200;
+  background:rgba(10,10,12,0.96);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+  padding:8px 12px 8px;
+  display:flex;gap:6px;align-items:center;
+  overflow-x:auto;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+.nav-bar::-webkit-scrollbar{display:none;}
+.nav-label{font-size:10px;color:var(--text-faint);letter-spacing:.2em;white-space:nowrap;flex-shrink:0;margin-right:2px;}
+.f{
+  font-family:'Shippori Mincho',serif;font-size:11px;letter-spacing:.12em;
+  padding:5px 11px;border-radius:3px;cursor:pointer;
+  border:1px solid var(--border);background:transparent;color:var(--text-dim);
+  white-space:nowrap;flex-shrink:0;transition:all .18s;
+  -webkit-appearance:none;
+}
+.f:active{opacity:.7;}
+.f.on{background:var(--gold-glow);border-color:var(--gold-dim);color:var(--gold);}
+.f.dual-f.on{background:rgba(106,74,170,0.16);border-color:rgba(160,110,220,0.38);color:rgba(205,175,255,0.9);}
+
+/* ── MAIN ── */
+.main{max-width:720px;margin:0 auto;padding:20px 14px 40px;}
+
+/* ── SECTION ── */
+.sec{display:flex;align-items:center;gap:10px;margin:30px 0 14px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+.sec-ico{font-size:16px;}
+.sec-title{font-family:'Noto Serif SC',serif;font-size:15px;font-weight:600;color:var(--white);letter-spacing:.08em;}
+.sec-badge{font-size:10px;padding:2px 7px;border-radius:2px;letter-spacing:.1em;margin-left:auto;white-space:nowrap;}
+.b-dist{background:rgba(200,168,75,0.09);color:var(--gold-dim);border:1px solid var(--border);}
+.b-dual{background:rgba(106,74,170,0.14);color:rgba(200,170,255,0.78);border:1px solid rgba(160,110,220,0.22);}
+
+/* ── CARD ── */
+.card{
+  background:var(--bg2);border:1px solid var(--border);border-radius:4px;
+  overflow:hidden;margin-bottom:10px;transition:border-color .2s;
+}
+.card.real{border-left:3px solid rgba(200,168,75,0.52);}
+.card.fictional{border-left:3px solid rgba(192,57,43,0.52);}
+.card.dual{border-left:3px solid rgba(160,110,220,0.72);background:linear-gradient(90deg,rgba(106,74,170,0.045),var(--bg2) 40%);}
+.card.hidden{display:none;}
+
+.ch{
+  display:flex;align-items:center;gap:9px;
+  padding:12px 13px;cursor:pointer;user-select:none;
+  min-height:48px; /* comfortable touch target */
+}
+.ci{font-size:14px;flex-shrink:0;}
+.cn{font-family:'Noto Serif SC',serif;font-size:13.5px;font-weight:600;letter-spacing:.04em;flex:1;line-height:1.4;}
+.cn.g{color:var(--gold);}
+.cn.p{color:rgba(205,175,255,0.88);}
+
+.tag{font-size:10px;padding:2px 6px;border-radius:2px;letter-spacing:.06em;white-space:nowrap;flex-shrink:0;}
+.tr{background:rgba(200,168,75,0.09);color:var(--gold-dim);border:1px solid rgba(200,168,75,0.18);}
+.tf{background:rgba(192,57,43,0.1);color:rgba(220,110,90,0.82);border:1px solid rgba(192,57,43,0.18);}
+.td{background:rgba(106,74,170,0.17);color:rgba(205,175,255,0.85);border:1px solid rgba(160,110,220,0.28);}
+.tv{font-size:10px;padding:2px 5px;border-radius:2px;color:var(--text-faint);border:1px solid rgba(255,255,255,0.055);background:rgba(255,255,255,0.025);white-space:nowrap;flex-shrink:0;}
+
+.ct{font-size:10px;color:var(--text-faint);transition:transform .2s;margin-left:2px;flex-shrink:0;}
+.ct.open{transform:rotate(180deg);}
+.cb{display:none;padding:0 13px 12px;border-top:1px solid rgba(180,140,80,0.07);}
+.cb.open{display:block;}
+
+/* ── QUOTE ── */
+.q{margin-top:9px;padding:9px 12px;background:rgba(255,255,255,0.018);border-left:2px solid var(--border);border-radius:0 2px 2px 0;}
+.q.dq{border-left:2px solid rgba(160,110,220,0.32);background:rgba(106,74,170,0.045);}
+.qt{font-size:12px;color:var(--text-dim);line-height:1.95;font-style:italic;}
+.qt em{color:var(--gold-dim);font-style:normal;}
+.qt em.de{color:rgba(200,168,255,0.78);}
+.qm{font-size:10.5px;color:var(--text-faint);margin-top:4px;font-family:'Shippori Mincho',serif;letter-spacing:.07em;display:block;}
+.qn{font-size:11px;color:var(--text-faint);margin-top:6px;font-style:normal;line-height:1.7;}
+
+/* ── MAP LINK ── */
+.map-btn{
+  display:inline-flex;align-items:center;gap:5px;
+  margin-top:9px;padding:7px 13px;
+  background:rgba(200,168,75,0.08);border:1px solid rgba(200,168,75,0.22);
+  border-radius:3px;color:var(--gold);font-size:11.5px;
+  text-decoration:none;letter-spacing:.06em;
+  transition:background .18s;
+}
+.map-btn:active{background:rgba(200,168,75,0.16);}
+.map-btn.dual-map{background:rgba(106,74,170,0.1);border-color:rgba(160,110,220,0.28);color:rgba(205,175,255,0.85);}
+.map-btn.dual-map:active{background:rgba(106,74,170,0.2);}
+
+/* ── DUAL ANNOTATION ── */
+.da{
+  margin-top:8px;padding:7px 10px;
+  background:rgba(106,74,170,0.07);border-radius:2px;
+  border-left:2px solid rgba(160,110,220,0.28);
+  font-size:11px;color:rgba(175,140,215,0.72);line-height:1.75;
+}
+
+/* ── LEGEND ── */
+.legend{display:flex;gap:14px;flex-wrap:wrap;padding:10px 0 16px;font-size:11px;color:var(--text-dim);}
+.li{display:flex;align-items:center;gap:5px;}
+.lb{width:10px;height:3px;border-radius:1px;}
+.lr{background:rgba(200,168,75,0.7);}
+.lf{background:rgba(192,57,43,0.6);}
+.ld{background:rgba(160,110,220,0.72);}
+
+/* ── BACK TO TOP ── */
+#btt{
+  position:fixed;bottom:calc(20px + var(--safe-bot));right:16px;z-index:300;
+  width:40px;height:40px;border-radius:50%;
+  background:rgba(200,168,75,0.18);border:1px solid var(--gold-dim);
+  color:var(--gold);font-size:16px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transition:opacity .3s;pointer-events:none;
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+}
+#btt.show{opacity:1;pointer-events:auto;}
+
+/* ── FOOTER ── */
+.footer{text-align:center;padding:36px 0 16px;border-top:1px solid var(--border);margin-top:32px;}
+.ft{font-family:'Shippori Mincho',serif;font-size:10px;letter-spacing:.4em;color:var(--text-faint);}
+.route-title{font-size:11px;color:rgba(200,170,255,0.42);letter-spacing:.25em;margin-bottom:10px;}
+.route{font-size:11px;color:var(--text-faint);line-height:2.3;max-width:500px;margin:0 auto 18px;padding:0 12px;}
+.rt-spot{color:rgba(200,168,75,0.52);}
+
+/* ── MOBILE REFINEMENTS ── */
+@media(max-width:480px){
+  .hero{padding-top:calc(48px + var(--safe-top));padding-left:16px;padding-right:16px;}
+  .dual-notice{margin:12px 12px 0;font-size:11.5px;}
+  .main{padding:16px 12px 36px;}
+  .cn{font-size:13px;}
+  .qt{font-size:11.5px;}
+  .q{padding:8px 10px;}
+}
+@media(prefers-color-scheme:light){
+  :root{
+    --bg:#f5f0e8;--bg2:#ede8dc;--bg3:#e4dfd2;
+    --border:rgba(120,90,30,0.14);--border2:rgba(120,90,30,0.3);
+    --text:#2a2318;--text-dim:#6b5e4a;--text-faint:#a09078;--white:#1a160f;
+    --gold:#8a6a1a;--gold-dim:rgba(120,90,20,0.55);--gold-glow:rgba(160,120,30,0.1);
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-kana">RYUUZOKU Ⅲ · KUROI TSUKI NO SHIO · 三卷合订</div>
+  <h1 class="hero-title">龙族Ⅲ 黑月之潮</h1>
+  <div class="hero-sub">东京 圣地巡礼 完全手册</div>
+  <div class="divider"></div>
+  <p class="hero-desc">整合上·中·下三卷全部东京地点，按区域分类。双源（源稚生·源稚女）场景完整收录，紫色标注，附地图直达链接。</p>
+</div>
+
+<div class="dual-notice">
+  <strong>◈ 双源专项说明 ◈</strong><br>
+  源稚生（蛇岐八家大家长）与源稚女（风间琉璃·猛鬼众龙王）为孪生兄弟，是下卷最重要的叙事线。哥哥主场：<strong>新宿·源氏重工（醒神寺）</strong>；弟弟游走：<strong>银座歌舞伎座·高天原·歌舞伎町</strong>；决战地：<strong>东京塔特别瞭望台250m</strong>；终幕：<strong>银座歌舞伎座</strong>。紫色卡片 = 双源专属场景。
+</div>
+
+<div class="nav-bar">
+  <span class="nav-label">筛选</span>
+  <button class="f on" onclick="filt('all',this)">全部</button>
+  <button class="f" onclick="filt('real',this)">现实</button>
+  <button class="f" onclick="filt('fictional',this)">虚构</button>
+  <button class="f dual-f" onclick="filt('dual',this)">★ 双源</button>
+  <button class="f" onclick="filt('shinjuku',this)">新宿</button>
+  <button class="f" onclick="filt('tower',this)">塔</button>
+  <button class="f" onclick="filt('ginza',this)">银座</button>
+  <button class="f" onclick="filt('shibuya',this)">涩谷·惠比寿</button>
+  <button class="f" onclick="filt('asakusa',this)">浅草</button>
+  <button class="f" onclick="filt('meiji',this)">明治·皇居</button>
+  <button class="f" onclick="filt('bay',this)">东京湾</button>
+</div>
+
+<div class="main">
+<div class="legend">
+  <span>图例：</span>
+  <span class="li"><span class="lb lr"></span>现实</span>
+  <span class="li"><span class="lb lf"></span>虚构</span>
+  <span class="li"><span class="lb ld"></span>双源专属</span>
+</div>
+
+<!-- ══ 新宿区 ══ -->
+<div class="sec"><span class="sec-ico">🌃</span><span class="sec-title">新宿区</span><span class="sec-badge b-dist">出场最高</span></div>
+
+<div class="card dual shinjuku" data-t="dual shinjuku">
+<div class="ch" onclick="tog(this)">
+  <span class="ci">🏢</span>
+  <span class="cn p">源氏重工大厦·醒神寺露台</span>
+  <span class="tag tf">虚构</span><span class="tag td">★双源</span><span class="tv">上·中·下</span>
+  <span class="ct">▼</span>
+</div>
+<div class="cb">
+  <div class="q dq"><div class="qt">「这座大厦在2004年年底落成，是<em class="de">源氏重工株式会社</em>的总部，也是学院在东京的办公中心。」…大厦接近完工时，东京都政府决定要修建高架公路，必须从这里经过……协商之后政府无力买下这座大厦，只有签订了长达一百年的租约，租用五层和六层建设高架公路。</div><span class="qm">上卷第九章 / 高架公路穿楼而过的奇特建筑，新宿区摩天楼群中的虚构总部</span></div>
+  <div class="q dq" style="margin-top:7px"><div class="qt">名为醒神寺，其实是隐藏在<em class="de">源氏重工</em>大厦高处的一处露台，头顶是阴云密布的天空，脚下是粗糙的青石地板，四周围绕着潺潺流水，朱红色的鸟居下摆着一张黑色石桌……浩荡的风从<em class="de">东京湾</em>上空吹来，空气中有浓重的海腥味。除了离家出走的上杉绘梨衣，<em class="de">蛇岐八家诸姓家主尽数在此</em>。</div><span class="qm">下卷第六章 / 源稚生在醒神寺主持最高级家族会议</span></div>
+  <div class="da">◈ 双源·源稚生 ◈　醒神寺是源稚生「君临天下」的场所。对应现实：新宿都厅展望台（南展望室，免费，平日22:00关）可感受源稚生俯瞰东京的视角。</div>
+  <a class="map-btn dual-map" href="https://maps.google.com/maps?q=35.6895,139.6917" target="_blank">🗺 新宿西口·都厅方向</a>
+</div>
+</div>
+
+<div class="card dual shinjuku" data-t="dual shinjuku">
+<div class="ch" onclick="tog(this)">
+  <span class="ci">🌸</span>
+  <span class="cn p">新宿区·源稚生的统治与弟弟的藏身</span>
+  <span class="tag td">★双源</span><span class="tv">下卷</span>
+  <span class="ct">▼</span>
+</div>
+<div class="cb">
+  <div class="q dq"><div class="qt">「找到您的弟弟了。」风魔小太郎的话素来简单，「他就藏身在<em class="de">新宿区</em>，一间牛郎俱乐部里，和卡塞尔学院的人在一起。」<em class="de">源稚生</em>吃了一惊。两件事同时发生，他无法同时兼顾两边，而橘政宗已经不在了。</div><span class="qm">下卷第十六章 / 源稚生知晓弟弟源稚女就在两条街外的高天原，内心的冲击</span></div>
+  <div class="q dq" style="margin-top:7px"><div class="qt">蛇岐八家在几个小时内召集了近千名混血种封锁了<em class="de">新宿区</em>……他们甚至在东京市民中拥有一支军队。沉默的黑帮成员从中间分裂开来，踏着雨水后退，可他们带来的威压仍旧没有消退。</div><span class="qm">下卷第十六章 / 千人封锁新宿区，全书最大规模势力展示</span></div>
+  <div class="da">◈ 双源·源稚生 ◈　源稚生统治新宿，弟弟源稚女却藏在高天原（歌舞伎町）里。两人相隔两条街，却是对立的两个世界。</div>
+</div>
+</div>
+
+<div class="card fictional shinjuku" data-t="fictional shinjuku">
+<div class="ch" onclick="tog(this)">
+  <span class="ci">🌸</span>
+  <span class="cn g">「高天原」牛郎夜总会</span>
+  <span class="tag tf">虚构</span><span class="tv">中·下卷</span>
+  <span class="ct">▼</span>
+</div>
+<div class="cb">
+  <div class="q"><div class="qt">「<em>高天原</em>夜总会，整个<em>新宿区</em>最有名的牛郎夜总会。刚才你看到的是新人牛郎楚子航的处男秀，他表演的节目名为《鱼生武士道》。」</div><span class="qm">中卷第六章 / 恺撒三人逃亡途中误打误撞成为牛郎，全书最具喜感的场景</span></div>
+  <div class="q" style="margin-top:7px"><div class="qt">「在<em>新宿区</em>，你们和<em>蛇岐八家</em>之间是没有公平谈判的……清场完毕之后<em>高天原</em>会变成一间孤店，如果你们那位王牌牛郎谈判失败，蛇岐八家可以大开杀戒。」</div><span class="qm">下卷第十八章 / 苏恩曦分析高天原谈判的险境</span></div>
+  <div class="qn">原型：新宿区东部歌舞伎町周边是东京最集中的牛郎俱乐部（ホスト俱乐部）区域。</div>
+  <a class="map-btn" href="https://maps.google.com/maps?q=%E6%AD%8C%E8%88%9E%E4%BC%8E%E7%94%BA1%E4%B8%81%E7%9B%AE,+%E6%96%B0%E5%AE%BF%E5%8C%BA" target="_blank">🗺 歌舞伎町一丁目</a>
+</div>
+</div>
+
+<div class="card real shinjuku" data-t="real shinjuku">
+<div class="ch" onclick="tog(this)">
+  <span class="ci">🌃</span>
+  <span class="cn g">新宿区·歌舞伎町（全书高频场景）</span>
+  <span class="tag tr">现实</span><span class="tv">上·中·下卷</span>
+  <span class="ct">▼</span>
+</div>
+<div class="cb">
+  <div class="q"><div class="qt">这支飞镖插在<em>新宿区</em>的<em>歌舞伎町</em>，那是<em>东京最负盛名的红灯区</em>，是最容易出现摩擦的地方。「新宿区的一家店向我们求助，说街上的黑帮忽然要求把保护费提高15%……」</div><span class="qm">上卷第十章 / 源稚生派恺撒三人处理黑道纠纷的名场面</span></div>
+  <div class="q" style="margin-top:7px"><div class="qt"><em>歌舞伎町</em>的长街上出没着各色人等，喝得烂醉的上班族这个时候才从酒吧里出来……「东京还是座知道睡觉的城市，可<em>新宿区</em>却是不知疲倦的少年啊！」</div><span class="qm">下卷第二章 / 全书对新宿深夜最精准的一句描写</span></div>
+  <a class="map-btn" href="https://maps.google.com/maps?q=%E6%AD%8C%E8%88%9E%E4%BC%8E%E7%94%BA,+%E6%96%B0%E5%AE%BF%E5%8C%BA,+%E6%9D%B1%E4%BA%AC" target="_blank">🗺 歌舞伎町</a>
+</div>
+</div>
+
+<div class="card real shinjuku" data-t="real shinjuku">
+<div class="ch" onclick="tog(this)">
+  <span class="ci">🚇</span>
+  <span class="cn g">新宿区地下下水道（铁穹神殿入口）</span>
+  <span class="tag tr">现实背景·虚构场景</span><span class="tv">中卷</span>
+  <span class="ct">▼</span>
+</div>
+<div class="cb">
+  <div class="q"><div class="qt">楚子航手绘的地图是<em>新宿区下水道系统</em>的示图，「高天原正下方就有一条下水道，我们沿着它向东走，从<em>新宿地铁站</em>下方绕过，进入主管道后不久就会见到源氏重工，总长度两公里。」「这就是所谓的'摸着石头过河'？但源氏重工就算是条河也是雅鲁藏布江级别的。」</div><span class="qm">中卷第八章 / 楚子航凭下水道地图夜袭源氏重工</span></div>
+  <div class="qn">现实：「首都圈外郭放水路（G-Cans）」在埼玉县春日部市，地下50m的「地下神殿」每年开放参观，是书中铁穹神殿的现实原型。</div>
+</div>
+</div>
+
+<!-- ══ 东京塔·天空树 ══ -->
+<div class="sec"><span class="sec-ico">🗼</span><span class="sec-title">东京塔 · 东京天空树</span><span class="sec-badge b-dual">★双源核心圣地</span></div>
+
+<div class="card dual tower bay" data-t="dual tower bay">
+<div class="ch" onclick="tog(this)">
+  <span class="ci">🗼</span>
+  <span class="cn p">东京塔·特别展望台250m（双源宿命之地）</span>
+  <span class="tag tr">现实</span><span class="tag td">★★双源</span><span class="tv">下卷</span>
+  <span class="ct">▼</span>
+</div>
+<div class="cb">
+  <div class="q dq"><div class="qt">「<em class="de">东京塔</em>，在250米的高处有一座<em class="de">特别瞭望台</em>，只有一部高速电梯通往那里，只要切断电梯的电源，特别瞭望台就会与外界彻底隔绝。它既不跟大地接触也不跟天空靠近，在那里发生的对话是人类和上帝都听不到的秘密。」风间琉璃缓缓地说，「那就是他们重逢的地方，时间是明天午夜12点。」</div><span class="qm">下卷第十二章 / 风间琉璃（源稚女）向恺撒透露决战地点</span></div>
+  <div class="q dq" style="margin-top:7px"><div class="qt">「<em class="de">稚女</em>。」<em class="de">源稚生</em>目光迷蒙。滑翔翼掠过<em class="de">东京塔</em>的瞬间，他看清了风间琉璃的脸。虽然太久不见了，可他们是孪生的兄弟，<em class="de">源稚女</em>就是女装妩媚的他，他不可能认错。</div><span class="qm">下卷第十四章 / 源稚生乘滑翔翼飞过，认出弟弟的脸——双源最震撼的重逢瞬间</span></div>
+  <div class="q dq" style="margin-top:7px"><div class="qt"><em class="de">东京港区</em>，距离海岸不远，隐隐可以听到午夜的潮声。铁塔矗立在暴雨中，就像形销骨立的巨人，默默地支撑着天空。<em class="de">东京塔</em>。那嶙峋的钢铁支架，与其说是巨人，不如说是巨人的骨骸。</div><span class="qm">下卷第十三章 / 东京塔在暴雨中的史诗级描写——第十三章开幕</span></div>
+  <div class="q dq" style="margin-top:7px"><div class="qt">「所以我不得不设计<em class="de">东京塔</em>的那场戏，在那场戏里我杀死了自己的一个身份，打消了你哥哥对我的怀疑，也引爆了你们的决战。看你们一边泪流满面一边挥刀冲向对方，就像看一场好戏。」赫尔佐格大笑。</div><span class="qm">下卷第二十一章 / 赫尔佐格承认操控了东京塔的一切——全书最大反转</span></div>
+  <div class="da">◈ 双源核心圣地 ◈　东京塔是整个双源叙事的舞台：源稚生认出弟弟（第13章）→ 樱牺牲（第14章）→ 橘政宗真相（第21章）。这里是被命运选中的地方。<br><br>📍 港区芝公园4-2-8 ｜ 赤羽桥站步行5分·御成门站步行6分<br>特别展望台250m 需单独购票（¥1200）｜夜间开放至23:00</div>
+  <a class="map-btn dual-map" href="https://maps.google.com/maps?q=35.6586,139.7454" target="_blank">🗺 东京塔</a>
+</div>
+</div>
+
+<div class="card real tower" data-t="real tower">
+<div class="ch" onclick="tog(this)">
+  <span class="ci">🗼</span>
+  <span class="cn g">东京天空树（粉紫灯光·路明非与绘梨衣）</span>
+  <span class="tag tr">现实</span><span class="tv">上·下卷</span>
+  <span class="ct">▼</span>
+</div>
+<div class="cb">
+  <div class="q"><div class="qt">「那是<em>东京天空树</em>，世界上最高的电波塔，可以上去的，据说从上面的展望台看东京才是最漂亮的。」路明非说。他把刚买的热咖啡递给绘梨衣，这种时候热咖啡才是最棒的东西，握在手里暖暖的，好像握着它就拥有了整个世界。</div><span class="qm">上卷第十章 / 路明非与绘梨衣在源氏重工天台遥望天空树，全书最温柔时刻</span></div>
+  <div class="q" style="margin-top:7px"><div class="qt">窗外雨幕中，<em>东京天空树</em>忽然亮了起来，通体亮着<em>粉红色的灯</em>，那光让人渐渐的恢复温暖。这一刻仿佛神从高天里俯视，怜悯这两个惊恐的孩子，点燃一束光照亮他们的眼睛。路明非轻轻的摸了摸绘梨衣的头发。</div><span class="qm">下卷第九章 / 绘梨衣失控痛哭，东京天空树亮起粉红灯——全书最治愈的一幕</span></div>
+  <div class="q" style="margin-top:7px"><div class="qt">「04.24，和Sakura去<em>东京天空树</em>，世界上暖和的地方在天空树的顶上。」</div><span class="qm">下卷第二十二章 / 绘梨衣的明信片日记——她用明信片记住了每一个他们去过的地方</span></div>
+  <div class="qn">📍 墨田区押上1-1-2 ｜ 押上站直连 ｜ 350m·450m展望台 ｜ 粉色灯光模式（さくらいろ）与书中描写完全一致</div>
+  <a class="map-btn" href="https://maps.google.com/maps?q=35.7101,139.8107" target="_blank">🗺 东京天空树</a>
+</div>
+</div>
+
+<!-- ══ 银座 ══ -->
+<div class="sec"><span class="sec-ico">🎭</span><span class="sec-title">银座</span><span class="sec-badge b-dual">★双源·源稚女终幕之地</span></div>
+
+<div class="card dual ginza" data-t="dual ginza">
+<div class="ch" onclick="tog(this)">
+  <span class="ci">🎭</span>
+  <span class="cn p">银座·歌舞伎座（源稚女的起点与终幕）</span>
+  <span class="tag tr">现实</span><span class="tag td">★★双源</span><span class="tv">下卷</span>
+  <span class="ct">▼</span>
+</div>
+<div class="cb">
+  <div class="q dq"><div class="qt">歌声像是白鸟一样飞翔在阴沉的天空下。<em class="de">银座，歌舞伎座</em>。这座歌舞伎剧场有一百多年的历史，堪称歌舞伎剧场中的王座。它曾经数次被焚毁，又数次被重建，如今的建筑有着明显的桃山时代风格，门前悬挂着紫色布缦。</div><span class="qm">下卷第三章 / 风间琉璃（源稚女）首次在歌舞伎座登台，扮演伊邪那美</span></div>
+  <div class="q dq" style="margin-top:7px"><div class="qt">「稚女回来了？」橘政宗忽然明白了，握伞的手不由自主地颤抖起来……「是的，如今他是猛鬼众中的高级干部。就在几个小时前，一场精彩的歌舞伎表演在<em class="de">银座的歌舞伎座</em>举行，那部剧的名字是《新编古事记》，稚女在其中出演伊邪那美。」「他是龙王？」</div><span class="qm">下卷第五章 / 源稚生向橘政宗确认：风间琉璃就是弟弟源稚女，身份在歌舞伎座揭晓</span></div>
+  <div class="q dq" style="margin-top:7px"><div class="qt">他们到达了<em class="de">银座的歌舞伎座</em>，<em class="de">东京最有名的歌舞伎剧场</em>……车在歌舞伎座前停下，门前空无一人，但是所有的灯都亮着。路鸣泽下车为他拉开车门，他们并肩穿过长长的走道……</div><span class="qm">下卷第二十二章 / 路明非被带到歌舞伎座，观看源稚女的最后一场演出</span></div>
+  <div class="da">◈ 双源·源稚女 ◈　歌舞伎座是源稚女的起点与终幕。全书双源最重要的现实地标。<br><br>📍 中央区銀座4-12-15 ｜ 東銀座站直连 ｜ 正门大屋顶·紫色布缦·纸灯笼可实地参观 ｜ 每月有公演可购票</div>
+  <a class="map-btn dual-map" href="https://maps.google.com/maps?q=35.6699,139.7654" target="_blank">🗺 银座歌舞伎座</a>
+</div>
+</div>
+
+<div class="card real ginza" data-t="real ginza">
+<div class="ch" onclick="tog(this)">
+  <span class="ci">✨</span>
+  <span class="cn g">银座（街区·千鸟之渊·楚子航赏樱）</span>
+  <span class="tag tr">现实</span><span class="tv">上·下卷</span>
+  <span class="ct">▼</span>
+</div>
+<div class="cb">
+  <div class="q"><div class="qt">「那边最亮的地方就是<em>银座</em>，据说日本地产价格最高的时候，一个银座的土地价值便可以买下整个美国。」恺撒扭头看向窗外。「我对银座没什么兴趣，倒是想去'<em>千鸟之渊</em>'看看。」楚子航睁开了眼睛。</div><span class="qm">上卷第六章 / 从飞机俯瞰银座，楚子航却心系千鸟之渊樱道</span></div>
+  <div class="q" style="margin-top:7px"><div class="qt">「他们正在<em>银座七丁目</em>附近加油，他们似乎在为长途旅行做准备。」「他们在附近的超市里购物，看起来他们买了很多零食……还有巨型轻松熊！」</div><span class="qm">下卷第十章 / 路明非驾保时捷911带绘梨衣驶过银座，向四国逃亡</span></div>
+  <a class="map-btn" href="https://maps.google.com/maps?q=35.6720,139.7660" target="_blank">🗺 银座</a>
+</div>
+</div>
+
+<!-- ══ 明治神宫·皇居·千鸟之渊 ══ -->
+<div class="sec"><span class="sec-ico">⛩️</span><span class="sec-title">明治神宫 · 千鸟之渊 · 皇居</span><span class="sec-badge b-dist">神社·皇室·樱花</span></div>
+
+<div class="card real meiji" data-t="real meiji">
+<div class="ch" onclick="tog(this)">
+  <span class="ci">⛩️</span>
+  <span class="cn g">明治神宫（恺撒世纪婚礼·绘梨衣明信片）</span>
+  <span class="tag tr">现实</span><span class="tv">上·下卷</span>
+  <span class="ct">▼</span>
+</div>
+<div class="cb">
+  <div class="q"><div class="qt">「婚礼中有一站一定要安排在<em>东京的明治神宫</em>。」恺撒叮嘱。「您的新娘是个日本人？」</div><span class="qm">上卷第一章·第二部 / 恺撒钦点明治神宫，全书日本篇最早出现的具体地名</span></div>
+  <div class="q" style="margin-top:7px"><div class="qt">「04.26，和Sakura去<em>明治神宫</em>，有人在那里举办婚礼。」</div><span class="qm">下卷第二十二章 / 绘梨衣的明信片日记，她和路明非去明治神宫时恰好看见了别人的婚礼</span></div>
+  <div class="qn">📍 渋谷区代々木神園町1-1 ｜ 明治神宫前站步行1分 ｜ 本殿参拜免费</div>
+  <a class="map-btn" href="https://maps.google.com/maps?q=35.6763,139.6993" target="_blank">🗺 明治神宫</a>
+</div>
+</div>
+
+<div class="card real meiji" data-t="real meiji">
+<div class="ch" onclick="tog(this)">
+  <span class="ci">🌸</span>
+  <span class="cn g">千鸟之渊·靖国神社（楚子航的樱道心愿）</span>
+  <span class="tag tr">现实</span><span class="tv">上卷</span>
+  <span class="ct">▼</span>
+</div>
+<div class="cb">
+  <div class="q"><div class="qt">「那是二战无名日军墓地，就在<em>靖国神社</em>旁边，作为中国人，你去那里是想往墓碑上吐口水么？」「我是听说有条一里长的樱道，一路上有800株樱树。」</div><span class="qm">上卷第六章 / 恺撒调侃楚子航，楚子航的真实心思只是看樱花</span></div>
+  <div class="qn">📍 千鳥ヶ淵：千代田区三番町先 ｜ 半藏門站·九段下站 ｜ 樱花季（3月底-4月初）800株染井吉野，小舟游览极美</div>
+  <a class="map-btn" href="https://maps.google.com/maps?q=35.6934,139.7484" target="_blank">🗺 千鸟之渊</a>
+</div>
+</div>
+
+<!-- ══ 浅草·上野 ══ -->
+<div class="sec"><span class="sec-ico">🏮</span><span class="sec-title">浅草 · 上野</span><span class="sec-badge b-dist">路明非·绘梨衣</span></div>
+
+<div class="card real asakusa" data-t="real asakusa">
+<div class="ch" onclick="tog(this)">
+  <span class="ci">🏮</span>
+  <span class="cn g">浅草寺（路绘初游·海啸后消失·明信片）</span>
+  <span class="tag tr">现实</span><span class="tv">上·下卷</span>
+  <span class="ct">▼</span>
+</div>
+<div class="cb">
+  <div class="q"><div class="qt">他带绘梨衣去逛<em>浅草寺</em>，经过路边画摊的时候画家虎跳过来把他们俩拦住……「我有幸遇到两位像梵高有幸遇到那朵令他名垂千古的向日葵，我很想为两位画张画，你们能答应我小小的请求么？」</div><span class="qm">下卷第八章 / 路明非与绘梨衣在浅草寺被街头画家拦下，全书最温馨的城市游览场景</span></div>
+  <div class="q" style="margin-top:7px"><div class="qt"><em>浅草寺</em>已经消失了，「和光百货」只剩下半座楼，粉红色的Hello Kitty们站在水中……这座城市陷入了极度混乱，却又透着森严的美，仿佛世界毁灭之后的场面。</div><span class="qm">下卷第十九章 / 海啸后浅草寺被淹没，Hello Kitty露出水面——荒诞而震撼</span></div>
+  <div class="q" style="margin-top:7px"><div class="qt">明信片上是东京天空树、<em>浅草寺</em>、迪士尼、明治神宫……每一个路明非带她去过的地方都有，不知道她怎么收集来的。</div><span class="qm">下卷第二十二章 / 绘梨衣的明信片日记——浅草寺是她与路明非东京之旅的重要一站</span></div>
+  <div class="qn">📍 台東区浅草2-3-1 ｜ 浅草站步行5分 ｜ 雷门·仲见世通·本堂全天可参观（免费）</div>
+  <a class="map-btn" href="https://maps.google.com/maps?q=35.7148,139.7967" target="_blank">🗺 浅草寺</a>
+</div>
+</div>
+
+<div class="card real asakusa" data-t="real asakusa">
+<div class="ch" onclick="tog(this)">
+  <span class="ci">📍</span>
+  <span class="cn g">上野（「源家次子」的古风自我介绍）</span>
+  <span class="tag tr">现实（提及）</span><span class="tv">中卷</span>
+  <span class="ct">▼</span>
+</div>
+<div class="cb">
+  <div class="q"><div class="qt">「小生是从<em>上野</em>来江户见识世面的源家次子，感谢小姐的盛情，以后还请多多关照。」年轻人后退几步手按刀柄向女孩鞠躬。</div><span class="qm">中卷第七章 / 源稚女穿和服在歌舞伎町的古风自我介绍——源家次子初次公开亮相</span></div>
+</div>
+</div>
+
+<!-- ══ 涩谷·惠比寿 ══ -->
+<div class="sec"><span class="sec-ico">🌹</span><span class="sec-title">涩谷 · 惠比寿</span><span class="sec-badge b-dist">路绘约会区</span></div>
+
+<div class="card real shibuya" data-t="real shibuya">
+<div class="ch" onclick="tog(this)">
+  <span class="ci">🌹</span>
+  <span class="cn g">惠比寿花园广场·Joel Robuchon（路绘约会与爆炸夜）</span>
+  <span class="tag tr">现实</span><span class="tv">中·下卷</span>
+  <span class="ct">▼</span>
+</div>
+<div class="cb">
+  <div class="q"><div class="qt">「Chateau Joel Robuchon，在<em>惠比寿</em>附近，餐馆设在一座1936年建造的洋楼里，明天法国总店的主厨乔尔侯布匈会抵达日本在那间店里主持一个月，我给你和上杉家主定了座位。」恺撒把一张小卡片扔给路明非，「周六的晚餐，主厨特选菜单，必须正装前往。」</div><span class="qm">下卷第四章 / 恺撒为路明非和绘梨衣安排惠比寿顶级法餐约会</span></div>
+  <div class="q" style="margin-top:7px"><div class="qt">「昨晚在<em>惠比寿花园西北的长街上</em>她杀死了76个人，没有伤者，她下达的是必死命令……但她并未肆意的屠杀后面赶来的人，只是带着路明非迅速的脱离了现场。」源稚生缓缓的说，「所以她还残留着神智。」</div><span class="qm">下卷第九章 / 绘梨衣失控，源稚生分析她「还残留着神智」</span></div>
+  <div class="qn">📍 惠比寿ガーデンプレイス：渋谷区恵比寿4-20 ｜ 惠比寿站步行8分 ｜ 旧麒麟啤酒厂改建，Joel Robuchon餐厅（1936年洋楼）全年开放</div>
+  <a class="map-btn" href="https://maps.google.com/maps?q=35.6425,139.7154" target="_blank">🗺 惠比寿花园广场</a>
+</div>
+</div>
+
+<div class="card real shibuya" data-t="real shibuya">
+<div class="ch" onclick="tog(this)">
+  <span class="ci">🛍️</span>
+  <span class="cn g">涩谷（109少女·接待酒会·闹市）</span>
+  <span class="tag tr">现实</span><span class="tv">中·下卷</span>
+  <span class="ct">▼</span>
+</div>
+<div class="cb">
+  <div class="q"><div class="qt">他这抹着晒黑膏的男子在这群公司职员般的黑衣人里还是太醒目了，看起来像是乱入的109少女（作者注：在<em>涩谷109大厦</em>附近活动的高中生潮女，以把自己抹得漆黑为性感）。</div><span class="qm">中卷第八章 / 路明非在源氏重工走廊里的窘境，江南亲自注释涩谷文化</span></div>
+  <a class="map-btn" href="https://maps.google.com/maps?q=35.6580,139.7016" target="_blank">🗺 涩谷</a>
+</div>
+</div>
+
+<!-- ══ 东京湾·港区 ══ -->
+<div class="sec"><span class="sec-ico">🌊</span><span class="sec-title">东京湾 · 港区 · 台场</span><span class="sec-badge b-dist">海啸·末日场景</span></div>
+
+<div class="card real bay" data-t="real bay">
+<div class="ch" onclick="tog(this)">
+  <span class="ci">🌊</span>
+  <span class="cn g">东京湾（夜景·海啸·高天原原址）</span>
+  <span class="tag tr">现实</span><span class="tv">上·中·下卷</span>
+  <span class="ct">▼</span>
+</div>
+<div class="cb">
+  <div class="q"><div class="qt">整个<em>东京湾</em>在夜幕中就像熊熊燃烧的巨烛。路明非趴在舷窗玻璃上往外看去，觉得自己好像回到了叔叔家的天台上，呆呆地望着远处灯火通明的CBD区。</div><span class="qm">上卷第六章 / 飞机降落前，路明非第一次俯瞰东京湾夜景</span></div>
+  <div class="q" style="margin-top:7px"><div class="qt">「<em>高天原</em>原本的位置就是<em>东京湾</em>里……」昂热沉默良久，深吸了一口气：「它会返回记忆中的高天原，就像鱼的洄游。但是东京湾里已经没有高天原了，它会寻觅最近的城市……就是这里！就是<em>东京</em>！」</div><span class="qm">中卷第十一章 / 中卷最震撼的推断——白王正向东京进发，末日将至</span></div>
+  <div class="q" style="margin-top:7px"><div class="qt">「各位市民请注意，前所未有的强劲海啸即将进入<em>东京湾</em>，请居住在沿海区域的市民紧急撤离……」新宿区距离海边大约有十公里远，在这里怎么能听见潮声？</div><span class="qm">下卷第十八章 / 海啸警报发出，距新宿10公里都能听见潮声，末日降临</span></div>
+</div>
+</div>
+
+<div class="card real bay" data-t="real bay">
+<div class="ch" onclick="tog(this)">
+  <span class="ci">🎡</span>
+  <span class="cn g">台场·调色板城乐园（绘梨衣的翘家愿望）</span>
+  <span class="tag tr">现实</span><span class="tv">下卷</span>
+  <span class="ct">▼</span>
+</div>
+<div class="cb">
+  <div class="q"><div class="qt">回来的路上她已经要求明天去<em>台场</em>的调色板城乐园……他们一起游览了东京迪士尼乐园、<em>调色板城乐园</em>、<em>惠比寿</em>和皇宫，但他们并没有意识到对方是一个潜在的情人。</div><span class="qm">下卷第四·七章 / 绘梨衣的翘家旅游清单，台场是其中一站</span></div>
+  <a class="map-btn" href="https://maps.google.com/maps?q=35.6255,139.7755" target="_blank">🗺 台场</a>
+</div>
+</div>
+
+<!-- ══ 东京大学·文京区 ══ -->
+<div class="sec"><span class="sec-ico">🍜</span><span class="sec-title">东京大学周边</span><span class="sec-badge b-dist">昂热的深夜食堂</span></div>
+
+<div class="card real" data-t="real">
+<div class="ch" onclick="tog(this)">
+  <span class="ci">🍜</span>
+  <span class="cn g">国立东京大学后门·屋台拉面车</span>
+  <span class="tag tr">现实</span><span class="tv">中·下卷</span>
+  <span class="ct">▼</span>
+</div>
+<div class="cb">
+  <div class="q"><div class="qt">深夜，<em>国立东京大学后门</em>的小街，街边停着一辆木质厢车……深蓝色的布幌子恰好能把客人的上半身遮住，营造了一个私密的环境。</div><span class="qm">中卷第十一章 / 昂热每夜来此吃拉面——全书最温情的日常场景</span></div>
+  <div class="q" style="margin-top:7px"><div class="qt">「那是当年的黑道至尊，如今只是拉面师傅，他们做了六十年黑道，我拉了六十年面，能比么？」越师傅没好气地说，「女人没有，要看AV光盘么？」</div><span class="qm">中卷第十一章 / 上杉越的黑色幽默，六十年黑道皇帝变拉面师傅</span></div>
+  <div class="qn">📍 東京大学本郷キャンパス：文京区本郷7-3-1 ｜ 本郷三丁目站·東大前站 ｜ 东大赤门及后门周边深夜有屋台文化</div>
+  <a class="map-btn" href="https://maps.google.com/maps?q=35.7128,139.7620" target="_blank">🗺 东京大学本乡</a>
+</div>
+</div>
+
+<!-- ══ 半岛酒店 ══ -->
+<div class="sec"><span class="sec-ico">🏨</span><span class="sec-title">东京半岛酒店</span><span class="sec-badge b-dist">日本分部的豪华接待</span></div>
+
+<div class="card real" data-t="real">
+<div class="ch" onclick="tog(this)">
+  <span class="ci">🏨</span>
+  <span class="cn g">东京半岛酒店（总统套房·恺撒三人）</span>
+  <span class="tag tr">现实</span><span class="tv">上卷</span>
+  <span class="ct">▼</span>
+</div>
+<div class="cb">
+  <div class="q"><div class="qt">入住之前他们只知道会下榻在<em>东京半岛酒店</em>，这是东京最豪华的酒店之一……日本分部给他们预定的居然是总统套房，而且是特别加料的总统套房。总经理亲自等候在酒店门口，行政主厨正在待命，水果来自台湾的莲雾、泰国的金芒果和从中国南方空运的名种荔枝"挂绿"。</div><span class="qm">上卷第七章 / 日本分部为恺撒三人安排的奢华接待，书中最重要的现实酒店地标</span></div>
+  <div class="qn">📍 千代田区有楽町1-8-1 ｜ 日比谷站·有楽町站附近 ｜ The Peninsula Tokyo现实中确为东京最顶级酒店之一</div>
+  <a class="map-btn" href="https://maps.google.com/maps?q=35.6736,139.7580" target="_blank">🗺 东京半岛酒店</a>
+</div>
+</div>
+
+<!-- ══ 成田·羽田 ══ -->
+<div class="sec"><span class="sec-ico">✈️</span><span class="sec-title">成田机场 · 羽田机场</span><span class="sec-badge b-dist">东京的玄关</span></div>
+
+<div class="card real" data-t="real">
+<div class="ch" onclick="tog(this)">
+  <span class="ci">✈️</span>
+  <span class="cn g">成田机场（和服登场·末日逃亡通道）</span>
+  <span class="tag tr">现实</span><span class="tv">上·下卷</span>
+  <span class="ct">▼</span>
+</div>
+<div class="cb">
+  <div class="q"><div class="qt">三个人穿着同样质地的印花和服，脚下是白袜木屐。三柄纸伞中一柄画着白鹤与菊花，一柄画着喷发的富士山，最前面的那柄最是威武，什么都没画，只有墨意淋漓的四个大字「天下一番」，居中一人腰间还配着黑鞘的长刀。源稚生被震住了，本部这次派出的是什么团……剑豪访问团？「见鬼，这是<em>成田机场</em>么？我怎么两眼一抹黑什么都看不见？」</div><span class="qm">上卷第六章 / 恺撒三人穿和服持纸伞降落，源稚生愣住——书中最欢乐的登场经典名场面</span></div>
+  <div class="q" style="margin-top:7px"><div class="qt"><em>东京都，成田机场</em>，车流从高速公路出口一直堵到候机大厅……逃离东京的唯一通道就是空港。所有机票都在海啸袭来后的几分钟内售空。每一架飞机都是满载起飞……</div><span class="qm">下卷第二十章 / 东京被淹，成田机场成为最后的逃生出口——全书最宏大的灾难场景</span></div>
+  <a class="map-btn" href="https://maps.google.com/maps?q=35.7720,140.3929" target="_blank">🗺 成田国际机场</a>
+</div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<div class="footer">
+  <div class="route-title">◈ 双源圣地巡礼推荐顺序 ◈</div>
+  <div class="route">
+    <span class="rt-spot">东京塔</span>（港区·夜间特别展望台250m）→
+    <span class="rt-spot">银座歌舞伎座</span>（东银座站·源稚女起终点）→
+    <span class="rt-spot">新宿都厅展望台</span>（免费·醒神寺视角）→
+    <span class="rt-spot">歌舞伎町</span>（高天原原型）→
+    <span class="rt-spot">惠比寿花园</span>（Joel Robuchon洋楼）→
+    <span class="rt-spot">东京天空树</span>（路绘·粉红灯光）→
+    <span class="rt-spot">浅草寺</span>（明信片第一站）→
+    <span class="rt-spot">千鸟之渊</span>（楚子航的樱道）→
+    <span class="rt-spot">明治神宫</span>（世纪婚礼·明信片）
+  </div>
+  <div class="ft">RYUUZOKU III · TOKYO COMPLETE PILGRIMAGE · 三卷合订</div>
+</div>
+</div>
+
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// Toggle card
+function tog(h){
+  const b=h.nextElementSibling,a=h.querySelector('.ct');
+  if(!b||!a)return;
+  const o=b.classList.contains('open');
+  b.classList.toggle('open',!o);
+  a.classList.toggle('open',!o);
+}
+
+// Filter
+function filt(type,btn){
+  document.querySelectorAll('.f').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.card').forEach(card=>{
+    const t=card.dataset.t||'';
+    let show=false;
+    if(type==='all') show=true;
+    else if(type==='real') show=card.classList.contains('real')&&!card.classList.contains('dual');
+    else if(type==='fictional') show=card.classList.contains('fictional')&&!card.classList.contains('dual');
+    else if(type==='dual') show=card.classList.contains('dual');
+    else show=t.includes(type);
+    card.classList.toggle('hidden',!show);
+  });
+  // Show/hide section headers based on visible cards
+  document.querySelectorAll('.sec').forEach(sec=>{
+    let next=sec.nextElementSibling;
+    let hasVisible=false;
+    while(next&&!next.classList.contains('sec')&&!next.classList.contains('footer')){
+      if(next.classList.contains('card')&&!next.classList.contains('hidden')) hasVisible=true;
+      next=next.nextElementSibling;
+    }
+    sec.style.display=hasVisible?'':'none';
+  });
+}
+
+// Back to top
+const btt=document.getElementById('btt');
+window.addEventListener('scroll',()=>{
+  btt.classList.toggle('show',window.scrollY>400);
+},{passive:true});
+
+// PWA install hint - register service worker for offline
+if('serviceWorker' in navigator){
+  const sw=`
+self.addEventListener('install',e=>{
+  e.waitUntil(caches.open('ryuuzoku-v1').then(c=>c.addAll(['/'])));
+});
+self.addEventListener('fetch',e=>{
+  e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request)));
+});`;
+  const blob=new Blob([sw],{type:'application/javascript'});
+  const url=URL.createObjectURL(blob);
+  navigator.serviceWorker.register(url).catch(()=>{});
+}
+</script>
+</body>
+</html>
